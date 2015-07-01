@@ -12,9 +12,11 @@ import Parse
 
 class TimelineViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
     
     var photoTakingHelper: PhotoTakingHelper?
-
+    var posts : [Post] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,25 @@ class TimelineViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // every time the TimeLine appears we are gonna query Parse to retrieve Posts from other users
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        ParseHelper.timelineRequestforCurrentUser {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            self.posts = result as? [Post] ?? []
+            
+            for post in self.posts {
+                let data = post.imageFile?.getData()
+                post.image = UIImage(data: data!, scale:1.0)
+            }
+            
+            self.tableView.reloadData()
+        }
+    }
+        
+        
     
     func takePhoto () {
         
@@ -66,12 +87,31 @@ extension TimelineViewController : UITabBarControllerDelegate {
     }
 }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+// We established that the data source for the TableView will be this class
+// We are gonna write an extension to conform the protocol of UITableViewDataSource
+
+
+extension TimelineViewController : UITableViewDataSource {
+    
+    
+    // conforming the protocol @required... returning the number of rows per section
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    
     }
-    */
+
+    // same here, creating the cell and returning it
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
+        //cell.textLabel!.text = "Post"
+        
+        cell.postImageView.image = posts[indexPath.row].image
+        
+        return cell
+    }
+    
+    
+    
+}
+

@@ -36,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         println("sorry bro!") // no user... PFUser is nil
     }
     
+    
+    // security: now all the Parse objects will have public read access and write access to the object's user creator only (by default)
+    
+    let acl = PFACL()
+    acl.setPublicReadAccess(true)
+    PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
+    
     return true
   }
 
