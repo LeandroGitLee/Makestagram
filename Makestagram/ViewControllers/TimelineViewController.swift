@@ -39,31 +39,19 @@ class TimelineViewController: UIViewController {
             (result: [AnyObject]?, error: NSError?) -> Void in
             self.posts = result as? [Post] ?? []
             
-            for post in self.posts {
-                let data = post.imageFile?.getData()
-                post.image = UIImage(data: data!, scale:1.0)
-            }
-            
             self.tableView.reloadData()
         }
     }
         
-        
     
-    func takePhoto () {
-        
-        // instantiate photo taking class, provide callback for when photo  is selected
-        
-        photoTakingHelper = PhotoTakingHelper(viewController: self.tabBarController!) { (image: UIImage?) in
-            
-            // we have the image coming from the Picker, we need to upload it to Parse...
-            println("received a callback!!")
-            
-            // subclassed in Post.swift
-            let post = Post()
-            post.image = image
-            post.uploadPost()
-            
+    func takePhoto() {
+        // instantiate photo taking class, provide callback for when photo is selected
+        photoTakingHelper =
+            PhotoTakingHelper(viewController: self.tabBarController!) { (image: UIImage?) in
+                let post = Post()
+                // 1
+                post.image.value = image!
+                post.uploadPost()
         }
     }
     
@@ -104,14 +92,14 @@ extension TimelineViewController : UITableViewDataSource {
     // same here, creating the cell and returning it
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PostCell") as! PostTableViewCell
-        //cell.textLabel!.text = "Post"
         
-        cell.postImageView.image = posts[indexPath.row].image
+        let post = posts[indexPath.row]
+        post.downloadImage()
+        post.fetchLikes()
+        cell.post = post
         
         return cell
     }
-    
-    
     
 }
 
