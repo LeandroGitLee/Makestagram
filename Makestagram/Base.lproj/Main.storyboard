@@ -146,6 +146,7 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Rqm-fg-okn" id="F2m-Ik-BeL"/>
+                                    <outlet property="delegate" destination="Rqm-fg-okn" id="8GQ-c2-d1M"/>
                                 </connections>
                             </tableView>
                         </subviews>

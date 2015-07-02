@@ -32,9 +32,9 @@ class ParseHelper {
     
     
     // 2
-    static func timelineRequestforCurrentUser(completionBlock: PFArrayResultBlock) {
+    static func timelineRequestforCurrentUser(range: Range<Int>, completionBlock: PFArrayResultBlock) {
         let followingQuery = PFQuery(className: ParseFollowClass)
-        followingQuery.whereKey(ParseFollowFromUser, equalTo:PFUser.currentUser()!)
+        followingQuery.whereKey(ParseLikeFromUser, equalTo:PFUser.currentUser()!)
         
         let postsFromFollowedUsers = Post.query()
         postsFromFollowedUsers!.whereKey(ParsePostUser, matchesKey: ParseFollowToUser, inQuery: followingQuery)
@@ -46,12 +46,13 @@ class ParseHelper {
         query.includeKey(ParsePostUser)
         query.orderByDescending(ParsePostCreatedAt)
         
+        // 2
+        query.skip = range.startIndex
         // 3
+        query.limit = range.endIndex - range.startIndex
+        
         query.findObjectsInBackgroundWithBlock(completionBlock)
-        
-        
     }
-    
     
     // function to perfom a like to a post from a user in the background
 
