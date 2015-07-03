@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D2134" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ozj-gI-hbz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ozj-gI-hbz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -16,11 +16,89 @@
                     <view key="view" contentMode="scaleToFill" id="gPi-5v-LM5">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="x4X-OC-4cS">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gq3-2m-RNo"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DPk-RZ-3QG" id="lKk-Zs-d59"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="htc-oh-mQi">
+                                <rect key="frame" x="1" y="72" width="599" height="479"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" rowHeight="50" id="YeP-A3-RxZ" customClass="FriendSearchTableViewCell" customModule="Makestagram" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="599" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YeP-A3-RxZ" id="1m7-4e-ZXh">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiM-9e-UMT">
+                                                    <rect key="frame" x="39" y="14" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="Hip-0Z-6hv"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2r-dN-dba">
+                                                    <rect key="frame" x="539" y="3" width="44" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="Rg3-O2-boq"/>
+                                                        <constraint firstAttribute="height" constant="44" id="gXt-Ux-DjZ"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <state key="normal" title="Button" image="Add">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="Check"/>
+                                                    <connections>
+                                                        <action selector="followButtonTapped:" destination="YeP-A3-RxZ" eventType="touchUpInside" id="dFv-HV-LLr"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="IiM-9e-UMT" secondAttribute="centerY" id="0us-e6-0fK"/>
+                                                <constraint firstItem="IiM-9e-UMT" firstAttribute="leading" secondItem="1m7-4e-ZXh" secondAttribute="leadingMargin" constant="31" id="LUg-6i-Ahz"/>
+                                                <constraint firstAttribute="centerY" secondItem="b2r-dN-dba" secondAttribute="centerY" id="ZIX-uY-Gu9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="IiM-9e-UMT" secondAttribute="trailing" constant="100" id="b0q-HF-h83"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b2r-dN-dba" secondAttribute="trailing" constant="8" id="pIZ-i6-cbB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="followButton" destination="b2r-dN-dba" id="fN0-gt-chz"/>
+                                            <outlet property="usernameLabel" destination="IiM-9e-UMT" id="03E-jQ-O9l"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DPk-RZ-3QG" id="pUa-j2-8tF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="htc-oh-mQi" firstAttribute="leadingMargin" secondItem="gPi-5v-LM5" secondAttribute="leadingMargin" id="8hb-4P-S0x"/>
+                            <constraint firstItem="cXk-jd-WzO" firstAttribute="top" secondItem="htc-oh-mQi" secondAttribute="bottom" id="9uh-9P-WtN"/>
+                            <constraint firstAttribute="trailing" secondItem="htc-oh-mQi" secondAttribute="trailing" id="BxI-tp-x2L"/>
+                            <constraint firstItem="htc-oh-mQi" firstAttribute="top" secondItem="x4X-OC-4cS" secondAttribute="bottom" id="GGM-FQ-ZfD"/>
+                            <constraint firstAttribute="trailing" secondItem="x4X-OC-4cS" secondAttribute="trailing" id="VX2-g9-ln3"/>
+                            <constraint firstItem="x4X-OC-4cS" firstAttribute="leading" secondItem="gPi-5v-LM5" secondAttribute="leading" id="f1G-LR-Ifu"/>
+                            <constraint firstItem="x4X-OC-4cS" firstAttribute="top" secondItem="2YC-QA-nIo" secondAttribute="bottom" constant="8" id="oqg-Gb-jxs"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="People" id="ehg-bL-DqU">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="searchBar" destination="x4X-OC-4cS" id="5Dr-N3-VDy"/>
+                        <outlet property="tableView" destination="htc-oh-mQi" id="ByZ-eS-HNn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ltV-h2-qe2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -191,7 +269,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Add" width="42" height="42"/>
         <image name="Camera" width="40" height="30"/>
+        <image name="Check" width="42" height="42"/>
         <image name="Heart" width="72" height="68"/>
         <image name="Heart-selected" width="72" height="68"/>
         <image name="Home" width="38" height="36"/>

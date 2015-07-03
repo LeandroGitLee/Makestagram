@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F08FAD51B46584200218D12 /* FriendSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F08FAD41B46584200218D12 /* FriendSearchTableViewCell.swift */; };
 		2F8592B31B435C4E009A7CC7 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8592B21B435C4E009A7CC7 /* PostTableViewCell.swift */; };
 		2F8592B51B43608F009A7CC7 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8592B41B43608F009A7CC7 /* ParseHelper.swift */; };
 		2FD0A1961B4324EB00CE8882 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD0A1951B4324EB00CE8882 /* Post.swift */; };
@@ -148,6 +149,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F08FAD41B46584200218D12 /* FriendSearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendSearchTableViewCell.swift; sourceTree = "<group>"; };
 		2F8592B21B435C4E009A7CC7 /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		2F8592B41B43608F009A7CC7 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		2FD0A1951B4324EB00CE8882 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		2F8592AA1B435C26009A7CC7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2F08FAD41B46584200218D12 /* FriendSearchTableViewCell.swift */,
 				2F8592AB1B435C26009A7CC7 /* Timeline */,
 			);
 			path = Views;
@@ -607,6 +610,7 @@
 				2FD4611F1B4268A500F244D1 /* TimelineViewController.swift in Sources */,
 				2FD461261B426DAC00F244D1 /* PhotoTakingHelper.swift in Sources */,
 				2FD461211B4268DB00F244D1 /* PhotoViewController.swift in Sources */,
+				2F08FAD51B46584200218D12 /* FriendSearchTableViewCell.swift in Sources */,
 				62C8C1E61B06BD6500DC3EA7 /* AppDelegate.swift in Sources */,
 				627718971B0A581700AF5C6E /* FilterViewController.swift in Sources */,
 				2F8592B51B43608F009A7CC7 /* ParseHelper.swift in Sources */,
